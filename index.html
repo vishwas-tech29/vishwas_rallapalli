@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishwas Rallapalli | Robotics Engineer · AI Builder</title>
+    <meta
+      name="description"
+      content="Vishwas Rallapalli is a Robotics Engineer and AI builder working at the intersection of robotics, computer vision, electronics, embedded systems and software."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Onest:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #08080a;
+        --bg-2: #0f1014;
+        --surface: #111114;
+        --surface-2: #17171b;
+        --surface-3: #1e1e24;
+        --fg: #f3f1ea;
+        --muted: #807f78;
+        --muted-2: #a09d98;
+        --line: rgba(243, 241, 234, 0.1);
+        --red: #ff3b1d;
+        --red-2: #ff6a3d;
+        --shadow: rgba(255, 59, 29, 0.2);
+        --hero-size: 28rem;
+        --mega-size: 13rem;
+        --display-size: 7.5rem;
+        --h1-size: 5rem;
+        --h2-size: 3.25rem;
+        --h3-size: 1.75rem;
+        --lead-size: 1.375rem;
+        --body-size: 1.0625rem;
+        --eyebrow-size: 0.8125rem;
+        --radius: 28px;
+        --sidebar: 110px;
+        --page-width: min(1460px, calc(100vw - 84px));
+      }
+
+      @media (max-width: 1024px) {
+        :root {
+          --page-width: min(100vw - 28px, 1400px);
+        }
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: clip;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "Onest", sans-serif;
+        font-size: var(--body-size);
+        line-height: 1.6;
+        letter-spacing: -0.02em;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(to bottom, rgba(255,255,255,0.015), rgba(255,255,255,0.0)),
+          radial-gradient(circle at top, rgba(255, 59, 29, 0.12), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(255, 106, 61, 0.08), transparent 25%);
+        z-index: 0;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .container {
+        width: var(--page-width);
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(12px);
+        background: rgba(8, 8, 10, 0.48);
+        border-bottom: 1px solid rgba(243, 241, 234, 0.06);
+      }
+
+      .site-header-inner {
+        width: var(--page-width);
+        margin: 0 auto;
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(243, 241, 234, 0.7);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-family: "Anton", sans-serif;
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        color: var(--fg);
+      }
+
+      .brand-name {
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(243, 241, 234, 0.76);
+      }
+
+      .main-nav a {
+        position: relative;
+        padding-bottom: 4px;
+        transition: color 260ms ease;
+      }
+
+      .main-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 260ms ease;
+      }
+
+      .main-nav a:hover,
+      .main-nav a:focus-visible {
+        color: var(--fg);
+      }
+
+      .main-nav a:hover::after,
+      .main-nav a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 54px;
+        height: 54px;
+        border: 1px solid rgba(243, 241, 234, 0.3);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--fg);
+        position: relative;
+        padding: 0;
+        cursor: pointer;
+        transition: border-color 240ms ease, transform 240ms ease;
+      }
+
+      .menu-toggle:hover {
+        border-color: rgba(243, 241, 234, 0.7);
+      }
+
+      .menu-toggle span {
+        position: absolute;
+        left: 15px;
+        width: 22px;
+        height: 1px;
+        background: var(--fg);
+        display: block;
+        transition: transform 260ms ease, opacity 220ms ease, background 220ms ease;
+      }
+
+      .menu-toggle span:nth-child(1) { top: 19px; }
+      .menu-toggle span:nth-child(2) { top: 26px; }
+      .menu-toggle span:nth-child(3) { top: 33px; }
+
+      .menu-toggle.is-open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-toggle.is-open span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.is-open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 8, 10, 0.96);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 320ms ease, visibility 320ms ease;
+        z-index: 55;
+      }
+
+      .mobile-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .mobile-menu nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .mobile-menu a {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        line-height: 0.9;
+        letter-spacing: 0.04em;
+        color: rgba(243, 241, 234, 0.82);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: transform 420ms cubic-bezier(.22,1.2,.32,1), opacity 420ms ease;
+      }
+
+      .mobile-menu.is-open a {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(var(--delay) * 60ms);
+      }
+
+      .hero {
+        padding-top: 42px;
+        padding-bottom: 56px;
+      }
+
+      .hero-inner {
+        position: relative;
+        min-height: 820px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+        gap: 24px;
+        align-items: end;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        padding-top: 30px;
+      }
+
+      .hero-kicker {
+        color: var(--muted);
+        font-size: var(--eyebrow-size);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        line-height: 0.78;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        font-size: clamp(4rem, 10vw, 28rem);
+        white-space: nowrap;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-title .line {
+        display: block;
+        overflow: hidden;
+        text-shadow: 0 0 32px rgba(255,59,29,0.18);
+      }
+
+      .hero-title .line > span {
+        display: inline-block;
+        will-change: transform, opacity;
+        transform: translateY(120%);
+        opacity: 0;
+        animation: heroReveal 780ms cubic-bezier(.23,1,.32,1) forwards;
+      }
+
+      .hero-title .line:nth-child(2) > span {
+        animation-delay: 240ms;
+      }
+
+      .hero-title .second-line {
+        color: var(--red);
+        margin-left: 8.8rem;
+      }
+
+      .hero-role {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 24px;
+        font-family: "Anton", sans-serif;
+        letter-spacing: 0.06em;
+        font-size: clamp(0.85rem, 1.2vw, 1.2rem);
+        text-transform: uppercase;
+      }
+
+      .hero-role span {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(18px);
+        animation: roleReveal 740ms cubic-bezier(.22,1,.36,1) forwards;
+      }
+
+      .hero-role span:nth-child(2) { animation-delay: 80ms; }
+      .hero-role span:nth-child(3) { animation-delay: 160ms; }
+      .hero-role span:nth-child(4) { animation-delay: 240ms; }
+
+      .hero-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 26px;
+        align-items: end;
+        margin-top: 24px;
+      }
+
+      .hero-body p {
+        margin: 0;
+        color: rgba(243, 241, 234, 0.82);
+        font-size: var(--lead-size);
+        line-height: 1.45;
+        max-width: 700px;
+      }
+
+      .hero-body p + p {
+        color: rgba(243, 241, 234, 0.64);
+        max-width: 380px;
+        justify-self: end;
+        font-size: 1.02rem;
+      }
+
+      .hero-visual {
+        justify-self: end;
+        position: relative;
+        width: min(520px, 40vw);
+        min-width: 320px;
+        height: 720px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+
+      .portrait-frame {
+        position: relative;
+        width: 86%;
+        height: 100%;
+        border-radius: 36px 36px 12px 12px;
+        background:
+          radial-gradient(circle at 50% 18%, rgba(255,255,255,0.18), transparent 28%),
+          radial-gradient(circle at 20% 10%, rgba(255, 59, 29, 0.26), transparent 28%),
+          linear-gradient(180deg, rgba(26,26,30,0.95), rgba(12,12,15,0.98));
+        border: 1px solid rgba(243, 241, 234, 0.08);
+        overflow: hidden;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      }
+
+      .portrait-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(145deg, rgba(255,255,255,0.08), transparent 30%, rgba(255,59,29,0.12));
+      }
+
+      .portrait-silhouette {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        filter: grayscale(1) contrast(1.05) brightness(0.85);
+      }
+
+      .portrait-figure {
+        position: relative;
+        width: 66%;
+        height: 76%;
+        margin-top: 48px;
+      }
+
+      .portrait-figure .head {
+        position: absolute;
+        left: 50%;
+        top: 12%;
+        transform: translateX(-50%);
+        width: 35%;
+        height: 28%;
+        background: linear-gradient(180deg, rgba(232,227,219,0.95), rgba(180,176,169,0.82));
+        border-radius: 46% 46% 45% 45% / 48% 48% 52% 52%;
+        box-shadow: inset -10px -6px 18px rgba(0, 0, 0, 0.18);
+      }
+
+      .portrait-figure .hair {
+        position: absolute;
+        left: 50%;
+        top: 8%;
+        transform: translateX(-50%);
+        width: 41%;
+        height: 23%;
+        background: linear-gradient(180deg, rgba(17,17,20,0.96), rgba(8,8,10,0.98));
+        border-radius: 38% 38% 44% 44% / 62% 62% 38% 38%;
+      }
+
+      .portrait-figure .neck {
+        position: absolute;
+        left: 50%;
+        top: 38%;
+        transform: translateX(-50%);
+        width: 9%;
+        height: 12%;
+        background: linear-gradient(180deg, rgba(214,210,201,0.95), rgba(185,180,170,0.82));
+        border-radius: 18px;
+      }
+
+      .portrait-figure .body {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 72%;
+        height: 51%;
+        background: linear-gradient(180deg, rgba(244,240,232,0.9), rgba(175,169,161,0.75));
+        border-radius: 28% 28% 10% 10% / 18% 18% 8% 8%;
+        clip-path: polygon(22% 0%, 78% 0%, 100% 100%, 0% 100%);
+      }
+
+      .portrait-figure .torso {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 38%;
+        background: linear-gradient(180deg, rgba(12,12,15,0.92), rgba(24,24,28,0.96));
+        border-radius: 18% 18% 10% 10% / 24% 24% 10% 10%;
+      }
+
+      .portrait-figure .shine {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(130deg, rgba(255,255,255,0.3), transparent 24%, transparent 64%, rgba(255, 59, 29, 0.16));
+      }
+
+      .portrait-corner {
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        width: 110px;
+        height: 110px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.56rem;
+        color: rgba(243, 241, 234, 0.74);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .portrait-corner::before,
+      .portrait-corner::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255,59,29,0.35);
+        border-radius: 50%;
+      }
+
+      .portrait-corner::before {
+        width: 88%;
+        height: 88%;
+      }
+
+      .portrait-corner::after {
+        width: 72%;
+        height: 72%;
+      }
+
+      .marquee {
+        position: relative;
+        border-top: 1px solid rgba(243, 241, 234, 0.12);
+        border-bottom: 1px solid rgba(243, 241, 234, 0.12);
+        background: rgba(17, 17, 20, 0.8);
+        overflow: hidden;
+      }
+
+      .marquee-track {
+        display: flex;
+        min-width: max-content;
+        white-space: nowrap;
+        animation: marqueeScroll 22s linear infinite;
+      }
+
+      .marquee-item {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2.2rem, 4vw, 5rem);
+        line-height: 1;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 0;
+        color: rgba(243, 241, 234, 0.92);
+      }
+
+      .marquee-item::after {
+        content: "•";
+        color: var(--red);
+        margin-left: 18px;
+        font-size: 0.9em;
+      }
+
+      .section {
+        padding: 120px 0;
+      }
+
+      .section-head {
+        margin-bottom: 42px;
+      }
+
+      .eyebrow {
+        color: var(--muted);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: var(--eyebrow-size);
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(3rem, 6vw, 7.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        max-width: 980px;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+        gap: 42px;
+      }
+
+      .story-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .story-copy p {
+        margin: 0;
+        max-width: 760px;
+        color: rgba(243, 241, 234, 0.8);
+        font-size: var(--lead-size);
+        line-height: 1.5;
+      }
+
+      .story-aside {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .info-block {
+        padding: 20px 20px 18px;
+        border: 1px solid rgba(243, 241, 234, 0.08);
+        background: rgba(17, 17, 20, 0.7);
+        border-radius: 18px;
+      }
+
+      .info-block strong {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .info-block span {
+        font-size: 1.08rem;
+        color: var(--fg);
+      }
+
+      .education-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 34px;
+        align-items: end;
+      }
+
+      .edu-card {
+        position: relative;
+        padding: 28px 26px 22px;
+        border: 1px solid rgba(243, 241, 234, 0.08);
+        background: linear-gradient(180deg, rgba(17,17,20,0.82), rgba(12,12,15,0.96));
+        border-radius: 22px;
+        overflow: hidden;
+      }
+
+      .edu-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), transparent);
+      }
+
+      .edu-card .course {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        margin: 0 0 14px;
+      }
+
+      .edu-card .school {
+        margin: 0;
+        font-size: 1.18rem;
+        color: rgba(243,241,234,0.92);
+      }
+
+      .edu-card .period {
+        display: inline-block;
+        margin-top: 12px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      .edu-desc {
+        margin: 0;
+        color: rgba(243,241,234,0.76);
+        font-size: var(--lead-size);
+        line-height: 1.5;
+        max-width: 620px;
+      }
+
+      .experience-list {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .experience-item {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1.05fr) minmax(0, 0.6fr) minmax(0, 1.4fr);
+        gap: 18px;
+        align-items: start;
+        padding: 26px 0;
+        border-top: 1px solid rgba(243,241,234,0.08);
+        border-bottom: 1px solid rgba(243,241,234,0.08);
+      }
+
+      .exp-index {
+        color: rgba(243,241,234,0.45);
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .role-box h3 {
+        margin: 0 0 8px;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2rem, 2.7vw, 3.1rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+
+      .role-box .company {
+        margin: 0;
+        color: rgba(243,241,234,0.75);
+        font-size: 1.22rem;
+      }
+
+      .exp-date {
+        justify-self: end;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(243,241,234,0.66);
+        padding-top: 8px;
+      }
+
+      .exp-desc {
+        margin: 0;
+        color: rgba(243,241,234,0.8);
+        font-size: 1.05rem;
+      }
+
+      .focus-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .focus-card {
+        position: relative;
+        min-height: 250px;
+        padding: 24px 24px 18px;
+        border: 1px solid rgba(243,241,234,0.08);
+        background: linear-gradient(180deg, rgba(17,17,20,0.88), rgba(15,15,18,0.98));
+        overflow: hidden;
+        border-radius: 22px;
+        transition: transform 380ms ease, border-color 380ms ease, box-shadow 380ms ease;
+      }
+
+      .focus-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(255,59,29,0.14), transparent 34%);
+      }
+
+      .focus-card:hover {
+        border-color: rgba(255,59,29,0.45);
+        transform: translateY(-4px);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+      }
+
+      .focus-card h3 {
+        position: relative;
+        z-index: 1;
+        margin: 0 0 12px;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2rem, 2.6vw, 3.3rem);
+        line-height: 0.88;
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
+      }
+
+      .focus-card p {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        color: rgba(243,241,234,0.72);
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 20px;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 0 0 12px;
+      }
+
+      .project-card:nth-child(odd) {
+        transform: translateY(24px);
+      }
+
+      .project-card:nth-child(even) {
+        transform: translateY(0);
+      }
+
+      .liquid-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 11;
+        border-radius: 22px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(17,17,20,0.9), rgba(8,8,10,1));
+        border: 1px solid rgba(243,241,234,0.08);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      }
+
+      .liquid-media {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        filter: grayscale(1) contrast(1.08) saturate(0.8);
+        transition: filter 420ms ease, transform 480ms cubic-bezier(.22,1,.36,1);
+      }
+
+      .liquid-media::before,
+      .liquid-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+
+      .liquid-media::before {
+        background: var(--art, linear-gradient(135deg, #111114 0%, #2b2b33 28%, #ff3b1d 100%));
+        transform: scale(1.2);
+        transition: transform 500ms ease;
+      }
+
+      .liquid-media::after {
+        background:
+          radial-gradient(circle at 30% 18%, rgba(255,255,255,0.24), transparent 24%),
+          linear-gradient(120deg, rgba(255,255,255,0.1), transparent 55%, rgba(255,59,29,0.22));
+        mix-blend-mode: screen;
+      }
+
+      .liquid-wrap:hover .liquid-media {
+        filter: grayscale(0) contrast(1.1) saturate(1.1);
+        transform: scale(1.04);
+      }
+
+      .liquid-wrap:hover .liquid-media::before {
+        transform: scale(1.06);
+      }
+
+      .liquid-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 56%, rgba(8,8,10,0.52) 100%);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .liquid-wrap svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .liquid-wrap:hover .liquid-media {
+        filter: url(#liquid-distortion) grayscale(0.1) contrast(1.1) saturate(1.15);
+      }
+
+      .project-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .project-tag {
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .project-title {
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2.2rem, 2.6vw, 3rem);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+
+      .project-tech {
+        color: rgba(243,241,234,0.7);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .project-desc {
+        margin: 0;
+        color: rgba(243,241,234,0.78);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .skill-card {
+        padding: 26px 24px 22px;
+        border: 1px solid rgba(243,241,234,0.08);
+        background: rgba(17,17,20,0.7);
+        border-radius: 20px;
+      }
+
+      .skill-card h3 {
+        margin: 0 0 12px;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2rem, 2.8vw, 3rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+      }
+
+      .skill-card p {
+        margin: 0;
+        color: rgba(243,241,234,0.75);
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .principle-list {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+      }
+
+      .principle-item {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+        padding-top: 18px;
+        border-top: 1px solid rgba(243,241,234,0.08);
+      }
+
+      .principle-number {
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2rem, 2.6vw, 3rem);
+        letter-spacing: -0.06em;
+        color: var(--red);
+      }
+
+      .principle-item h3 {
+        margin: 0 0 8px;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(1.8rem, 2.2vw, 2.7rem);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+      }
+
+      .principle-item p {
+        margin: 0;
+        color: rgba(243,241,234,0.78);
+        font-size: 1.06rem;
+        line-height: 1.6;
+        max-width: 720px;
+      }
+
+      .vision-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 0.6fr);
+        gap: 36px;
+        align-items: end;
+      }
+
+      .vision-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .vision-copy p {
+        margin: 0;
+        color: rgba(243,241,234,0.8);
+        font-size: var(--lead-size);
+        line-height: 1.5;
+      }
+
+      .vision-note {
+        padding: 22px;
+        border: 1px solid rgba(243,241,234,0.08);
+        background: linear-gradient(180deg, rgba(17,17,20,0.86), rgba(12,12,15,0.96));
+        border-radius: 18px;
+      }
+
+      .vision-note strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+      }
+
+      .vision-note p {
+        margin: 0;
+        color: rgba(243,241,234,0.8);
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+
+      .contact-box {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        padding-top: 10px;
+      }
+
+      .contact-box h2 {
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(3.5rem, 8vw, 13rem);
+        line-height: 0.82;
+        letter-spacing: -0.06em;
+        text-transform: uppercase;
+      }
+
+      .contact-box p {
+        margin: 0;
+        max-width: 740px;
+        color: rgba(243,241,234,0.78);
+        font-size: var(--lead-size);
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        width: fit-content;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(1.4rem, 3vw, 3rem);
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--fg);
+        transition: transform 240ms ease, color 240ms ease;
+      }
+
+      .contact-link .arrow {
+        color: var(--red);
+        font-size: 0.9em;
+        display: inline-block;
+        transform: translateX(0);
+        transition: transform 260ms ease;
+      }
+
+      .contact-link:hover {
+        transform: translateX(12px);
+      }
+
+      .contact-link:hover .arrow {
+        transform: translate(5px, -1px);
+      }
+
+      .site-footer {
+        border-top: 1px solid rgba(243,241,234,0.08);
+        padding: 26px 0 42px;
+      }
+
+      .footer-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 28px;
+        align-items: end;
+      }
+
+      .footer-signature {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-signature strong {
+        display: block;
+        font-family: "Anton", sans-serif;
+        font-size: clamp(2.5rem, 4vw, 6rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+
+      .footer-signature span {
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+      }
+
+      .footer-nav {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 18px 28px;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(243,241,234,0.7);
+      }
+
+      .copyright {
+        padding-top: 16px;
+        color: rgba(243,241,234,0.62);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 720ms ease, transform 720ms cubic-bezier(.22,1,.36,1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes marqueeScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      @keyframes heroReveal {
+        0% { transform: translateY(90%); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+
+      @keyframes roleReveal {
+        0% { opacity: 0; transform: translateY(18px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 1200px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+
+        .hero-copy {
+          order: 1;
+        }
+
+        .hero-visual {
+          order: 2;
+          width: min(440px, 90vw);
+          height: 560px;
+          justify-self: center;
+        }
+
+        .hero-body {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-body p + p {
+          justify-self: start;
+        }
+
+        .focus-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .main-nav {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .brand-name {
+          display: none;
+        }
+
+        .about-grid,
+        .education-grid,
+        .vision-grid,
+        .footer-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card:nth-child(odd),
+        .project-card:nth-child(even) {
+          transform: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --page-width: calc(100vw - 28px);
+        }
+
+        .hero {
+          padding-top: 22px;
+        }
+
+        .site-header-inner {
+          min-height: 78px;
+        }
+
+        .hero-copy {
+          padding-top: 16px;
+        }
+
+        .hero-title {
+          white-space: normal;
+          font-size: clamp(4.3rem, 22vw, 10rem);
+          line-height: 0.76;
+        }
+
+        .hero-title .line {
+          display: block;
+        }
+
+        .hero-title .second-line {
+          margin-left: 0;
+        }
+
+        .hero-role {
+          gap: 10px 12px;
+          font-size: 0.8rem;
+        }
+
+        .hero-body p {
+          font-size: 1.18rem;
+        }
+
+        .hero-visual {
+          width: min(360px, 90vw);
+          height: 430px;
+        }
+
+        .experience-item {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .exp-date {
+          justify-self: start;
+          padding-top: 0;
+        }
+
+        .focus-grid,
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 86px 0;
+        }
+
+        .contact-box h2 {
+          font-size: clamp(3rem, 17vw, 8rem);
+        }
+
+        .footer-nav {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute; left: -9999px; overflow: hidden;">
+      <filter id="liquid-distortion">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="1" seed="7" result="noise">
+          <animate attributeName="baseFrequency" dur="10s" values="0.012 0.08;0.02 0.1;0.012 0.08" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
+    <div class="page-shell">
+      <div id="preloader" style="position: fixed; inset: 0; background: #08080a; display: grid; place-items: center; z-index: 999; transition: opacity 650ms ease, visibility 650ms ease;">
+        <div style="display: flex; align-items: baseline; gap: 10px; font-family: 'Anton', sans-serif; font-size: clamp(3rem, 8vw, 9rem); letter-spacing: 0.04em; color: var(--fg);">
+          <span id="preloader-count">0</span>
+          <span style="color: var(--red); font-size: 0.5em;">%</span>
+        </div>
+      </div>
+
+      <header class="site-header">
+        <div class="site-header-inner">
+          <div class="brand">
+            <div class="brand-mark">VR</div>
+            <div class="brand-name">Vishwas Rallapalli</div>
+          </div>
+
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="mobile-menu" aria-hidden="true">
+        <nav>
+          <a href="#about" style="--delay: 0;">About</a>
+          <a href="#experience" style="--delay: 1;">Experience</a>
+          <a href="#projects" style="--delay: 2;">Projects</a>
+          <a href="#skills" style="--delay: 3;">Skills</a>
+          <a href="#contact" style="--delay: 4;">Contact</a>
+        </nav>
+      </div>
+
+      <main>
+        <section class="hero">
+          <div class="container hero-inner">
+            <div class="hero-copy reveal">
+              <div class="hero-kicker">Robotics Engineer · AI Developer · Deep-Tech Builder</div>
+              <h1 class="hero-title" aria-label="Vishwas Rallapalli">
+                <span class="line"><span>VISHWAS</span></span>
+                <span class="line second-line"><span>RALLAPALLI</span></span>
+              </h1>
+
+              <div class="hero-role" aria-label="Roles">
+                <span>ROBOTICS</span>
+                <span>ENGINEER</span>
+                <span>AI BUILDER</span>
+                <span>INNOVATOR</span>
+              </div>
+
+              <div class="hero-body">
+                <p>
+                  I build intelligent systems at the intersection of robotics, AI, electronics and software — turning ambitious ideas into working technology.
+                </p>
+                <p>
+                  From autonomous systems and computer vision to embedded devices, XR and AI-powered products, I like building things that move beyond the idea stage.
+                </p>
+              </div>
+            </div>
+
+            <div class="hero-visual reveal">
+              <div class="portrait-frame">
+                <div class="portrait-corner">Build</div>
+                <div class="portrait-silhouette">
+                  <div class="portrait-figure" aria-hidden="true">
+                    <div class="hair"></div>
+                    <div class="head"></div>
+                    <div class="neck"></div>
+                    <div class="body"></div>
+                    <div class="torso"></div>
+                    <div class="shine"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="marquee" aria-label="Technical philosophy marquee">
+          <div class="marquee-track">
+            <span class="marquee-item">Build</span>
+            <span class="marquee-item">Experiment</span>
+            <span class="marquee-item">Automate</span>
+            <span class="marquee-item">Learn</span>
+            <span class="marquee-item">Invent</span>
+            <span class="marquee-item">Build</span>
+            <span class="marquee-item">Experiment</span>
+            <span class="marquee-item">Automate</span>
+            <span class="marquee-item">Learn</span>
+            <span class="marquee-item">Invent</span>
+            <span class="marquee-item">Build</span>
+            <span class="marquee-item">Experiment</span>
+            <span class="marquee-item">Automate</span>
+            <span class="marquee-item">Learn</span>
+            <span class="marquee-item">Invent</span>
+          </div>
+        </div>
+
+        <section id="about" class="section">
+          <div class="container">
+            <div class="section-head reveal">
+              <div class="eyebrow">About Me</div>
+              <h2 class="section-title">Building technology that can move, see, think and act.</h2>
+            </div>
+
+            <div class="about-grid reveal">
+              <div class="story-copy">
+                <p>
+                  I'm Vishwas Rallapalli, a Robotics Engineer and technology enthusiast focused on building intelligent systems across robotics, artificial intelligence, computer vision, electronics and software.
+                </p>
+                <p>
+                  My background is in Electronics and Communication Engineering, but my interests have always crossed boundaries. I enjoy moving between hardware and software — from sensors, motors, microcontrollers and Raspberry Pi systems to computer vision, AI models, web applications and intelligent automation.
+                </p>
+                <p>
+                  I’m particularly interested in autonomous systems, robotics, AI-powered tools, XR, drones and emerging technologies that can turn complex ideas into useful real-world experiences.
+                </p>
+              </div>
+
+              <aside class="story-aside">
+                <div class="info-block">
+                  <strong>Focus</strong>
+                  <span>Robotics · AI · Computer Vision · Embedded Systems</span>
+                </div>
+                <div class="info-block">
+                  <strong>Interests</strong>
+                  <span>Autonomous systems · XR · Drones · Intelligent products</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">Education</div>
+              <h2 class="section-title">Engineering the foundation.</h2>
+            </div>
+
+            <div class="education-grid">
+              <div class="edu-card">
+                <p class="course">B.Tech — Electronics &amp; Communication Engineering</p>
+                <p class="school">KL University, Hyderabad</p>
+                <span class="period">2021 — 2025</span>
+              </div>
+
+              <p class="edu-desc">
+                Built a foundation across electronics, embedded systems, communication technologies, programming and engineering while developing a growing focus on robotics, AI and intelligent systems.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">Experience</div>
+              <h2 class="section-title">From engineering ideas to working systems.</h2>
+            </div>
+
+            <div class="experience-list">
+              <article class="experience-item">
+                <div class="exp-index">01</div>
+                <div class="role-box">
+                  <h3>Robotics Engineer</h3>
+                  <p class="company">Taurean Surgical</p>
+                </div>
+                <div class="exp-date">September 2025 — Present</div>
+                <p class="exp-desc">Working in robotics engineering and R&amp;D, contributing to the development of advanced robotic systems and technology.</p>
+              </article>
+
+              <article class="experience-item">
+                <div class="exp-index">02</div>
+                <div class="role-box">
+                  <h3>R&amp;D Engineer Intern</h3>
+                  <p class="company">Starkin Solution</p>
+                </div>
+                <div class="exp-date">July 2024 — December 2024</div>
+                <p class="exp-desc">Worked across research and development, exploring engineering solutions and translating technical concepts into practical systems.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">What I Build</div>
+              <h2 class="section-title">Technology across hardware and software.</h2>
+            </div>
+
+            <div class="focus-grid">
+              <article class="focus-card">
+                <h3>Robotics</h3>
+                <p>Robotics systems, control systems, sensors, motors, embedded hardware and autonomous machines.</p>
+              </article>
+
+              <article class="focus-card">
+                <h3>Artificial Intelligence</h3>
+                <p>AI/ML systems, intelligent tools, model integration and AI-powered applications.</p>
+              </article>
+
+              <article class="focus-card">
+                <h3>Computer Vision</h3>
+                <p>Object detection, visual understanding and real-time computer vision systems.</p>
+              </article>
+
+              <article class="focus-card">
+                <h3>Embedded Systems</h3>
+                <p>Raspberry Pi, Arduino, sensors, motors, microcontrollers and hardware/software integration.</p>
+              </article>
+
+              <article class="focus-card">
+                <h3>Web &amp; Software</h3>
+                <p>Frontend and backend development, UI/UX, APIs and full-stack product development.</p>
+              </article>
+
+              <article class="focus-card">
+                <h3>XR &amp; Emerging Tech</h3>
+                <p>AR, VR, XR headsets, smart glasses and immersive interfaces.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">Selected Projects</div>
+              <h2 class="section-title">Ideas built into systems.</h2>
+            </div>
+
+            <div class="project-grid">
+              <article class="project-card">
+                <div class="liquid-wrap" style="--art: linear-gradient(135deg, #1b1c22 0%, #2b2f33 35%, #ff3b1d 100%);">
+                  <div class="liquid-media"></div>
+                </div>
+                <div class="project-meta">
+                  <div class="project-tag">Artificial Intelligence · Computer Vision</div>
+                  <h3 class="project-title">AI Driver Monitoring System</h3>
+                  <div class="project-tech">Python · YOLOv8 · TensorFlow Lite</div>
+                  <p class="project-desc">An AI-powered driver monitoring concept using computer vision and lightweight machine-learning inference to analyse driver behaviour in real time.</p>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="liquid-wrap" style="--art: linear-gradient(145deg, #111114 0%, #1e2330 26%, #ff6a3d 120%);">
+                  <div class="liquid-media"></div>
+                </div>
+                <div class="project-meta">
+                  <div class="project-tag">XR · Embedded Systems</div>
+                  <h3 class="project-title">AR Smart Glasses</h3>
+                  <div class="project-tech">Raspberry Pi Zero · Electronics · Embedded Systems</div>
+                  <p class="project-desc">An augmented-reality smart-glasses concept combining compact computing, electronics and immersive interfaces.</p>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="liquid-wrap" style="--art: linear-gradient(135deg, #0f1115 0%, #22272d 30%, #ff5b2d 100%);">
+                  <div class="liquid-media"></div>
+                </div>
+                <div class="project-meta">
+                  <div class="project-tag">Robotics · Automation</div>
+                  <h3 class="project-title">Robotics Systems</h3>
+                  <div class="project-tech">ROS · Raspberry Pi · Arduino · Sensors · Motors</div>
+                  <p class="project-desc">Robotics experimentation focused on integrating sensing, computation, control and physical actuation into intelligent systems.</p>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="liquid-wrap" style="--art: linear-gradient(135deg, #121318 0%, #202832 24%, #ff3b1d 100%);">
+                  <div class="liquid-media"></div>
+                </div>
+                <div class="project-meta">
+                  <div class="project-tag">AI · Software · Automation</div>
+                  <h3 class="project-title">AI-Powered Products</h3>
+                  <div class="project-tech">AI · Product Concepts · Automation</div>
+                  <p class="project-desc">Exploring AI-powered tools and product concepts that combine intelligent models, automation and modern software experiences.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">Technical Stack</div>
+              <h2 class="section-title">Hardware meets intelligence.</h2>
+            </div>
+
+            <div class="skills-grid">
+              <article class="skill-card">
+                <h3>Robotics</h3>
+                <p>ROS · Raspberry Pi · Arduino · Sensors · Motors · Control Systems</p>
+              </article>
+
+              <article class="skill-card">
+                <h3>AI / ML</h3>
+                <p>Python · YOLOv8 · TensorFlow Lite · Machine Learning · AI Systems</p>
+              </article>
+
+              <article class="skill-card">
+                <h3>Software</h3>
+                <p>Frontend · Backend · APIs · UI/UX · Web Development</p>
+              </article>
+
+              <article class="skill-card">
+                <h3>Emerging Tech</h3>
+                <p>Computer Vision · AR · VR · XR · Drones · Automation</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">How I Think</div>
+              <h2 class="section-title">Curiosity becomes capability.</h2>
+            </div>
+
+            <div class="principle-list">
+              <article class="principle-item">
+                <div class="principle-number">01</div>
+                <div>
+                  <h3>Build, don't just imagine</h3>
+                  <p>Ideas become valuable when they become working systems. I learn by building, testing and iterating.</p>
+                </div>
+              </article>
+
+              <article class="principle-item">
+                <div class="principle-number">02</div>
+                <div>
+                  <h3>Hardware and software belong together</h3>
+                  <p>The most interesting systems happen where physical machines and intelligent software meet.</p>
+                </div>
+              </article>
+
+              <article class="principle-item">
+                <div class="principle-number">03</div>
+                <div>
+                  <h3>Learn across disciplines</h3>
+                  <p>Robotics, AI, electronics, computer vision and software become more powerful when they are treated as connected disciplines.</p>
+                </div>
+              </article>
+
+              <article class="principle-item">
+                <div class="principle-number">04</div>
+                <div>
+                  <h3>Keep exploring what comes next</h3>
+                  <p>I'm drawn to emerging technologies — autonomous systems, XR, AI tools, drones and new ways humans interact with machines.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container reveal">
+            <div class="section-head">
+              <div class="eyebrow">The Future</div>
+              <h2 class="section-title">Building systems that feel impossible today.</h2>
+            </div>
+
+            <div class="vision-grid">
+              <div class="vision-copy">
+                <p>My long-term goal is to work at the frontier of robotics and artificial intelligence — building intelligent machines, autonomous systems and AI-powered products that solve meaningful real-world problems.</p>
+                <p>I'm interested in the space where engineering meets invention: robots that understand their environment, AI systems that can reason and assist, and products that make advanced technology feel natural to use.</p>
+              </div>
+
+              <div class="vision-note">
+                <strong>Direction</strong>
+                <p>Robots that act intelligently, AI that helps meaningfully, and systems designed for real human use.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section">
+          <div class="container reveal">
+            <div class="contact-box">
+              <div class="eyebrow">Let's Build</div>
+              <h2>Have an idea worth turning into reality?</h2>
+              <p>I'm always interested in ambitious ideas, emerging technologies and projects that sit at the intersection of robotics, AI, software and hardware.</p>
+              <a class="contact-link" href="#contact">Let's Connect <span class="arrow">↗</span></a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="footer-signature">
+            <strong>Vishwas Rallapalli</strong>
+            <span>Robots · AI · Software · The Future</span>
+          </div>
+
+          <div>
+            <div class="footer-nav" aria-label="Footer navigation">
+              <a href="#about">About</a>
+              <a href="#experience">Experience</a>
+              <a href="#projects">Projects</a>
+              <a href="#skills">Skills</a>
+              <span>LinkedIn</span>
+              <span>GitHub</span>
+            </div>
+            <div class="copyright">© 2026 Vishwas Rallapalli. All rights reserved.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script>
+      const preloader = document.getElementById('preloader');
+      const counter = document.getElementById('preloader-count');
+      const heroRevealDelay = 2500;
+      const start = performance.now();
+      let displayValue = 0;
+
+      const lerp = (startVal, endVal, progress) => startVal + (endVal - startVal) * progress;
+
+      function animateLoader(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / 2000, 1);
+        displayValue = Math.round(lerp(0, 100, progress));
+        counter.textContent = displayValue;
+
+        if (progress < 1) {
+          requestAnimationFrame(animateLoader);
+        } else {
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            document.body.classList.add('loaded');
+          }, 650);
+        }
+      }
+
+      requestAnimationFrame(animateLoader);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        smoothWheel: true,
+        smoothTouch: false,
+        touchMultiplier: 1.1
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        menuToggle.classList.toggle('is-open', isOpen);
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('is-open');
+          menuToggle.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const hero = document.querySelector('.hero-copy');
+        if (hero) {
+          setTimeout(() => hero.classList.add('visible'), heroRevealDelay);
+        }
+      });
+    </script>
+  </body>
+</html>
